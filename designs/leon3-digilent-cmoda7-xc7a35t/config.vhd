@@ -24,7 +24,7 @@ package config is
   constant CFG_CLK_NOFB : integer := 0;
 -- LEON3 processor core
   constant CFG_LEON3 : integer := 1;
-  constant CFG_NCPU : integer := (1);
+  constant CFG_NCPU : integer := (2);
   constant CFG_NWIN : integer := (8);
   constant CFG_V8 : integer := 16#32# + 4*0;
   constant CFG_MAC : integer := 0;
@@ -147,11 +147,11 @@ package config is
   constant CFG_AHBROMEN : integer := 0;
   constant CFG_AHBROPIP : integer := 0;
   constant CFG_AHBRODDR : integer := 16#000#;
-  constant CFG_ROMADDR : integer := 16#100#;
-  constant CFG_ROMMASK : integer := 16#E00# + 16#100#;
+  constant CFG_ROMADDR : integer := 16#000#;
+  constant CFG_ROMMASK : integer := 16#E00# + 16#000#;
 -- AHB RAM
-  constant CFG_AHBRAMEN : integer := 0;
-  constant CFG_AHBRSZ : integer := 1;
+  constant CFG_AHBRAMEN : integer := 1;
+  constant CFG_AHBRSZ : integer := 4;
   constant CFG_AHBRADDR : integer := 16#A00#;
   constant CFG_AHBRPIPE : integer := 0;
 -- Gaisler Ethernet core
