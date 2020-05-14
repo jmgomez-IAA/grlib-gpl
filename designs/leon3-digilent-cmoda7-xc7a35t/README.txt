@@ -129,25 +129,63 @@ Exiting GRMON
 IP Core Instantiation
 ----------------------
 
-|  hindex  |  pindex  |  Entity   | IP Core | AHBMI | AHBMO | AHBSI | AHBSO | APBI | APBO | IRQI | IRQO |
-| ======== | ======== | ========= | ======= | ===== | ===== | ===== | ===== | ==== | ==== | ==== | ==== |
-|     0    |    NC    |   cpu0    | leon3s  |   X   |   0   |   X   |   X   |  NC  |  NC  |   0  |   0  |
-|     1    |    NC    |   cpu1    | leon3s  |   X   |   1   |   X   |   X   |  NC  |  NC  |   1  |   1  |
-|     2    |    NC    |   dsu0    | dsu3    |   X   |   NC  |   X   |   2   |  NC  |  NC  |   1  |   1  |
-|     3    |    4     |   dcom0   | ahbuart |   X   |   3   |   NC  |   NC  |  NC  |  4   |   NC |   NC |
-|     4    |    NC    | ahbjtag0  | ahbjtag |   X   |   4   |   NC  |   NC  |  NC  |  NC  |   NC |   NC |
-|     5    |    0     |   mctrl0  | mctrl   |   NC  |   NC  |   X   |   5   |  X   |  0   |   NC |   NC |
-|     6    |    NC    |  ahbrom0  | ahbrom  |   NC  |   NC  |   X   |   6   |  NC  |  NC  |   NC |   NC |
-|     7(7) |    0     | spimctrl1 | spimctrl|   NC  |   NC  |   X   |   7   |  X   |  0   |   7  |   7  |
-|     8    |    NC    |  ahbram0  | ahbram  |   NC  |   NC  |   X   |   8   |  NC  |  NC  |   NC |   NC |
-|     9    |    NC    |  apb0     | apbctrl |   NC  |   NC  |   X   |   9   |  NC  |  NC  |   NC |   NC |
-|     10   |    5(5)  |  spw0     | spwamba |   X   |   10  |   NC  |   NC  |  X   |   5  |   NC |   NC |
-|  ------  | ------   |  ------   | ------  |   --  |   --  |   --  |   --  |  --  |  --  |   -- |   -- |
-|     NC   |    1(2)  |  uart1    | apbuart |   NC  |   NC  |   NC  |   NC  |  X   |   1  |   NC |   NC |
-|     NC   |    2     |  irqctrl0 | irqmp   |   NC  |   NC  |   NC  |   NC  |  X   |   2  |   X  |   X  |
-|     NC   |    3(8)  |  timer0   | gptimer |   NC  |   NC  |   NC  |   NC  |  X   |   3  |   NC |   NC |
+Bus structure
+MST
+
+|  hindex  |  Entity   | IP Core | AHBMI | AHBMO |
+| ======== | ========= | ======= | ===== | ===== |
+|     0    |   cpu0    | leon3s  |   X   |   0   |
+|     1    |   cpu1    | leon3s  |   X   |   1   |
+|     2    |   dcom0   | ahbuart |   X   |   2   |
+|     3    | ahbjtag0  | ahbjtag |   X   |   3   |
+|     5    |  spw0     | spwamba |   X   |   5  |
+
+SLV
+
+|  hindex  |  IRQ  |  Entity   | IP Core | AHBSI | AHBSO |
+| ======== | ===== | ========= | ======= | ===== | ===== |
+|     1    |       |   apb0    | apbctrl |   X   |   1   |
+|     2    |   0   |   dsu0    | dsu3    |   X   |   2   |
+|     3    |       |  ahbram0  | ahbram  |   X   |   3   |
+|     5    |       |   mctrl0  | mctrl   |   X   |   5   |
+|     6    |       |  ahbrom0  | ahbrom  |   X   |   6   |
+|     7    |   7   | spimctrl1 | spimctrl|   X   |   7   |
 
 
+APB
+
+SLV
+|  pindex  | paddr  |  irq   |  Entity    | IP Core | APBI | APBO |
+| ======== | ====== | =====  | =========  | ======= | ==== | ==== |
+|     0    |    0   |        |   mctrl0   | mctrl   |  X   |   0  |
+|     1    |    1   |    2   |   uart1    | apbuart |  X   |   1  |
+|     2    |    2   |        |   irqctrl0 | irqmp   |  X   |   2  |
+|     3    |    3   |    8   |   timer0   | gptimer |  X   |   3  |
+|     4    |    7   |        |   dcom0    | ahbuart |  X   |   4  |
+|     5    |    5   |    5   |   spw0     | spwamba |  X   |   5  |
 
 
+IRQ
+==
+
+Entity - interconnection
+==
+
+|  Entity   | IP Core |  hindex  |  pindex  | AHBMI | AHBMO | AHBSI | AHBSO | APBI | APBO | IRQI | IRQO |
+| ========= | ======= | ======== | ======== | ===== | ===== | ===== | ===== | ==== | ==== | ==== | ==== |
+|   cpu0    | leon3s  |     0    |    NC    |   X   |   0   |   X   |   X   |  NC  |  NC  |   0  |   0  |
+|   cpu1    | leon3s  |     1    |    NC    |   X   |   1   |   X   |   X   |  NC  |  NC  |   1  |   1  |
+|   dsu0    | dsu3    |     2    |    NC    |   X   |   NC  |   X   |   2   |  NC  |  NC  |   1  |   1  |
+|   dcom0   | ahbuart |     3    |    4     |   X   |   3   |   NC  |   NC  |  NC  |  4   |   NC |   NC |
+| ahbjtag0  | ahbjtag |     4    |    NC    |   X   |   4   |   NC  |   NC  |  NC  |  NC  |   NC |   NC |
+|   mctrl0  | mctrl   |     5    |    0     |   NC  |   NC  |   X   |   5   |  X   |  0   |   NC |   NC |
+|  ahbrom0  | ahbrom  |     6    |    NC    |   NC  |   NC  |   X   |   6   |  NC  |  NC  |   NC |   NC |
+| spimctrl1 | spimctrl|     7(7) |    0     |   NC  |   NC  |   X   |   7   |  X   |  0   |   7  |   7  |
+|  ahbram0  | ahbram  |     8    |    NC    |   NC  |   NC  |   X   |   8   |  NC  |  NC  |   NC |   NC |
+|  apb0     | apbctrl |     9    |    NC    |   NC  |   NC  |   X   |   9   |  NC  |  NC  |   NC |   NC |
+|  spw0     | spwamba |     10   |    5(5)  |   X   |   10  |   NC  |   NC  |  X   |   5  |   NC |   NC |
+|  ------   | ------  |  ------  | ------   |   --  |   --  |   --  |   --  |  --  |  --  |   -- |   -- |
+|  uart1    | apbuart |     NC   |    1(2)  |   NC  |   NC  |   NC  |   NC  |  X   |   1  |   NC |   NC |
+|  irqctrl0 | irqmp   |     NC   |    2     |   NC  |   NC  |   NC  |   NC  |  X   |   2  |   X  |   X  |
+|  timer0   | gptimer |     NC   |    3(8)  |   NC  |   NC  |   NC  |   NC  |  X   |   3  |   NC |   NC |
 
