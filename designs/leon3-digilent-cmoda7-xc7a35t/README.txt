@@ -141,11 +141,11 @@ IP Core Instantiation
 |     7(7) |    0     | spimctrl1 | spimctrl|   NC  |   NC  |   X   |   7   |  X   |  0   |   7  |   7  |
 |     8    |    NC    |  ahbram0  | ahbram  |   NC  |   NC  |   X   |   8   |  NC  |  NC  |   NC |   NC |
 |     9    |    NC    |  apb0     | apbctrl |   NC  |   NC  |   X   |   9   |  NC  |  NC  |   NC |   NC |
-|     10   |    5(8)  |  spw0     | spwamba |   X   |   10  |   NC  |   NC  |  X   |   5  |   NC |   NC  |
+|     10   |    5(5)  |  spw0     | spwamba |   X   |   10  |   NC  |   NC  |  X   |   5  |   NC |   NC |
 |  ------  | ------   |  ------   | ------  |   --  |   --  |   --  |   --  |  --  |  --  |   -- |   -- |
-|     NC   |    1(2)  |  uart1    | apbuart |   NC  |   NC  |   NC  |   NC  |  X   |   1  |   2  |   2  |
+|     NC   |    1(2)  |  uart1    | apbuart |   NC  |   NC  |   NC  |   NC  |  X   |   1  |   NC |   NC |
 |     NC   |    2     |  irqctrl0 | irqmp   |   NC  |   NC  |   NC  |   NC  |  X   |   2  |   X  |   X  |
-|     NC   |    3(8)  |  timer0   | gptimer |   NC  |   NC  |   NC  |   NC  |  X   |   3  |   8  |   8  |
+|     NC   |    3(8)  |  timer0   | gptimer |   NC  |   NC  |   NC  |   NC  |  X   |   3  |   NC |   NC |
 
 
 
