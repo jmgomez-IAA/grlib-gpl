@@ -125,3 +125,29 @@ Hello World
 grmon3> exit
 
 Exiting GRMON
+
+IP Core Instantiation
+----------------------
+
+|  hindex  |  pindex  |  Entity   | IP Core | AHBMI | AHBMO | AHBSI | AHBSO | APBI | APBO | IRQI | IRQO |
+| ======== | ======== | ========= | ======= | ===== | ===== | ===== | ===== | ==== | ==== | ==== | ==== |
+|     0    |    NC    |   cpu0    | leon3s  |   X   |   0   |   X   |   X   |  NC  |  NC  |   0  |   0  |
+|     1    |    NC    |   cpu1    | leon3s  |   X   |   1   |   X   |   X   |  NC  |  NC  |   1  |   1  |
+|     2    |    NC    |   dsu0    | dsu3    |   X   |   NC  |   X   |   2   |  NC  |  NC  |   1  |   1  |
+|     3    |    4     |   dcom0   | ahbuart |   X   |   3   |   NC  |   NC  |  NC  |  4   |   NC |   NC |
+|     4    |    NC    | ahbjtag0  | ahbjtag |   X   |   4   |   NC  |   NC  |  NC  |  NC  |   NC |   NC |
+|     5    |    0     |   mctrl0  | mctrl   |   NC  |   NC  |   X   |   5   |  X   |  0   |   NC |   NC |
+|     6    |    NC    |  ahbrom0  | ahbrom  |   NC  |   NC  |   X   |   6   |  NC  |  NC  |   NC |   NC |
+|     7(7) |    0     | spimctrl1 | spimctrl|   NC  |   NC  |   X   |   7   |  X   |  0   |   7  |   7  |
+|     8    |    NC    |  ahbram0  | ahbram  |   NC  |   NC  |   X   |   8   |  NC  |  NC  |   NC |   NC |
+|     9    |    NC    |  apb0     | apbctrl |   NC  |   NC  |   X   |   9   |  NC  |  NC  |   NC |   NC |
+|     10   |    5(8)  |  spw0     | spwamba |   X   |   10  |   NC  |   NC  |  X   |   5  |   NC |   NC  |
+|  ------  | ------   |  ------   | ------  |   --  |   --  |   --  |   --  |  --  |  --  |   -- |   -- |
+|     NC   |    1(2)  |  uart1    | apbuart |   NC  |   NC  |   NC  |   NC  |  X   |   1  |   2  |   2  |
+|     NC   |    2     |  irqctrl0 | irqmp   |   NC  |   NC  |   NC  |   NC  |  X   |   2  |   X  |   X  |
+|     NC   |    3(8)  |  timer0   | gptimer |   NC  |   NC  |   NC  |   NC  |  X   |   3  |   8  |   8  |
+
+
+
+
+
